@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="622.0" prefWidth="789.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Admin.AdminAppointmentManagmentController">
+   <stylesheets>
+      <URL value="@/CSS/adminpatientmanagment.css" />
+   </stylesheets>
+   <children>
+      <AnchorPane layoutX="239.0" layoutY="74.0" prefHeight="472.0" prefWidth="538.0" style="-fx-background-color: white; -fx-background-radius: 30px;">
+         <children>
+            <Button fx:id="dashboardBtn" layoutX="409.0" layoutY="32.0" mnemonicParsing="false" onAction="#dashboardBtnHandle" prefHeight="35.0" prefWidth="121.0" style="-fx-background-color: #0082c8;" text="Go to Dashboard" textFill="WHITE">
+               <font>
+                  <Font name="Georgia Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="addAppointments" contentDisplay="CENTER" layoutX="12.0" layoutY="28.0" mnemonicParsing="false" onAction="#addAppointmentsHandle" prefHeight="42.0" prefWidth="211.0" style="-fx-background-color: #3598DB;" styleClass="updateBtn" text="+ Add New Appointment" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <HBox layoutX="274.0" layoutY="96.0" prefHeight="36.0" prefWidth="255.0">
+               <children>
+                  <TextField fx:id="fNameTF" prefHeight="36.0" prefWidth="187.0" promptText="First Name" styleClass="textField" />
+                  <Button fx:id="searchByFNameBtn" alignment="CENTER" mnemonicParsing="false" onAction="#searchByFNameHandle" prefHeight="36.0" prefWidth="67.0" style="-fx-background-color: #3598DB;" styleClass="showAllBtn" text="Search" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <Button fx:id="updateBtn" layoutX="13.0" layoutY="428.0" mnemonicParsing="false" onAction="#updateBtnHandle" prefHeight="45.0" prefWidth="92.0" style="-fx-background-color: #3598DB;" styleClass="updateBtn" text="Update" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="deleteBtn" alignment="CENTER" layoutX="117.0" layoutY="428.0" mnemonicParsing="false" onAction="#deleteBtnHandle" prefHeight="45.0" prefWidth="92.0" style="-fx-background-color: red;" styleClass="updateBtn" text="Delete" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <TableView fx:id="tableView" layoutX="14.0" layoutY="141.0" prefHeight="246.0" prefWidth="516.0">
+               <columns>
+                  <TableColumn fx:id="idTC" prefWidth="48.0" text="Id" />
+                  <TableColumn fx:id="appDateTC" prefWidth="128.0" text="Appointment Date" />
+                  <TableColumn fx:id="appDayTC" prefWidth="127.0" text="Appointment Day" />
+                  <TableColumn fx:id="appTimeTC" prefWidth="129.0" text="Appointment Time" />
+                  <TableColumn fx:id="statusTC" minWidth="9.0" prefWidth="82.0" text="Status" />
+               </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="dashboardNav" prefHeight="622.0" prefWidth="228.0" style="-fx-background-color: #8fb4c2;">
+         <children>
+            <Label fx:id="headerTextLabel" contentDisplay="CENTER" layoutX="7.0" layoutY="23.0" prefHeight="34.0" prefWidth="223.0" text="Admin Appointment" textFill="WHITE">
+               <font>
+                  <Font name="Georgia Bold" size="20.0" />
+               </font>
+            </Label>
+            <VBox fx:id="vBox" layoutX="10.0" layoutY="96.0" prefHeight="291.0" prefWidth="211.0" spacing="20.0">
+               <children>
+                  <Button fx:id="showFreeAppointments" mnemonicParsing="false" onAction="#showFreeAppointmentsHandle" prefHeight="42.0" prefWidth="211.0" style="-fx-background-color: #3598DB;" styleClass="updateBtn" text="Show Free Apppointments" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="showBookedAppointments" mnemonicParsing="false" onAction="#showBookedAppointmentsHandle" prefHeight="42.0" prefWidth="211.0" style="-fx-background-color: #3598DB;" styleClass="updateBtn" text="Show Booked Appointments" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
