@@ -29,6 +29,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Bokkedappointments.findAll", query = "SELECT b FROM Bokkedappointments b"),
     @NamedQuery(name = "Bokkedappointments.findById", query = "SELECT b FROM Bokkedappointments b WHERE b.id = :id"),
     @NamedQuery(name = "Bokkedappointments.findByStatus", query = "SELECT b FROM Bokkedappointments b WHERE b.status = :status"),
+    @NamedQuery(name = "Bokkedappointments.findByUserId", query = "SELECT b FROM Bokkedappointments b WHERE b.userId = :userId"),
+    @NamedQuery(name = "Bokkedappointments.findByUserIdAndStat", query = "SELECT b FROM Bokkedappointments b WHERE b.userId = :userId and b.status = :status"),
     @NamedQuery(name = "Bokkedappointments.findByDoctorComment", query = "SELECT b FROM Bokkedappointments b WHERE b.doctorComment = :doctorComment")})
 public class Bokkedappointments implements Serializable {
 
@@ -54,6 +56,12 @@ public class Bokkedappointments implements Serializable {
 
     public Bokkedappointments(Integer id) {
         this.id = id;
+    }
+
+    public Bokkedappointments(String status, Appointments appointmentId, Users userId) {
+        this.status = status;
+        this.appointmentId = appointmentId;
+        this.userId = userId;
     }
 
     public Integer getId() {
@@ -120,5 +128,5 @@ public class Bokkedappointments implements Serializable {
     public String toString() {
         return "Model.Bokkedappointments[ id=" + id + " ]";
     }
-    
+
 }

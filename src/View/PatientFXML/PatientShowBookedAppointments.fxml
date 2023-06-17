@@ -10,10 +10,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="634.0" prefWidth="824.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Patient.PatientDashboardPageController">
-    <stylesheets>
-        <URL value="@/CSS/patientdashboardpage.css" />
-    </stylesheets>
+<AnchorPane id="AnchorPane" prefHeight="634.0" prefWidth="824.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Patient.PatientShowBookedAppointmentsController">
+   <stylesheets>
+      <URL value="@/CSS/patientdashboardpage.css" />
+   </stylesheets>
    <children>
       <AnchorPane fx:id="dashboardNav" prefHeight="634.0" prefWidth="236.0" style="-fx-background-color: #8fb4c2;">
          <children>
@@ -62,23 +62,15 @@
       </AnchorPane>
       <AnchorPane layoutX="249.0" layoutY="84.0" prefHeight="472.0" prefWidth="538.0" style="-fx-background-color: white; -fx-background-radius: 30px;">
          <children>
-            <TableView fx:id="tableView" layoutX="11.0" layoutY="90.0" prefHeight="246.0" prefWidth="516.0">
+            <TableView fx:id="tableView" layoutX="11.0" layoutY="96.0" prefHeight="246.0" prefWidth="516.0">
                <columns>
-                  <TableColumn fx:id="idTC" prefWidth="48.0" text="Id" />
-                  <TableColumn fx:id="appDateTC" prefWidth="128.0" text="Appointment Date" />
-                  <TableColumn fx:id="appDayTC" prefWidth="127.0" text="Appointment Day" />
-                  <TableColumn fx:id="appTimeTC" prefWidth="129.0" text="Appointment Time" />
-                  <TableColumn fx:id="statusTC" minWidth="9.0" prefWidth="82.0" text="Status" />
+                  <TableColumn fx:id="tcId" prefWidth="48.0" text="Id" />
+                  <TableColumn fx:id="tcAppId" prefWidth="128.0" text="Appointment Id" />
+                  <TableColumn fx:id="tcUserId" prefWidth="127.0" text="User Id" />
+                  <TableColumn fx:id="tcStatus" prefWidth="129.0" text="Status" />
+                  <TableColumn fx:id="tcComment" minWidth="9.0" prefWidth="82.0" text="Comment" />
                </columns>
             </TableView>
-            <Button fx:id="bookAnAppointment" layoutX="11.0" layoutY="351.0" mnemonicParsing="false" onAction="#bookAnAppointmentHandle" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #3598DB;" styleClass="updateBtn" text="Book an Appointment" textFill="WHITE">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Button>
          </children>
       </AnchorPane>
    </children>

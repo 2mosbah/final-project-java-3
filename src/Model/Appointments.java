@@ -140,7 +140,7 @@ public class Appointments implements Serializable {
 
     @Override
     public String toString() {
-        return "Model.Appointments[ id=" + id + " ]";
+        return id + "";
     }
-    
+
 }

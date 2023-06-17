@@ -75,8 +75,6 @@ public class AdminPatientManagmentController implements Initializable {
     @FXML
     private Button deleteBtn;
 
-    public static Users selectedPatientToUpdate;
-
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("finalProjectPU");
     EntityManager em = emf.createEntityManager();
     UsersJpaController usersJPA = new UsersJpaController(emf);
@@ -131,11 +129,17 @@ public class AdminPatientManagmentController implements Initializable {
 
     @FXML
     private void searchByFNameHandle(ActionEvent event) {
+        tableView.getItems().clear();
+
         Query query = em.createNamedQuery("Users.findByFirstName");
         String findByFName = fNameTF.getText();
         query.setParameter("firstName", findByFName);
         List<Users> result = query.getResultList();
-        tableView.getItems().addAll(result);
+        if (!result.isEmpty()) {
+            tableView.getItems().addAll(result);
+        } else {
+            warningAlert("Not Found !!", "First Name Not Exsist ");
+        }
     }
 
     @FXML
@@ -150,15 +154,15 @@ public class AdminPatientManagmentController implements Initializable {
     @FXML
     private void updateBtnHandle(ActionEvent event) {
         if (tableView.getSelectionModel().getSelectedItem() != null) {
-
-            selectedPatientToUpdate = tableView.getSelectionModel().getSelectedItem();
+            
+            Users selectedPatientToUpdate = tableView.getSelectionModel().getSelectedItem();
             System.out.println(selectedPatientToUpdate.getAge());
-            System.out.println(selectedPatientToUpdate.getUsername()); 
-            ViewManager.adminDashboardPage.ChangeSceneToAdminUpdatePatientScene();
+            System.out.println(selectedPatientToUpdate.getPassword());
+            System.out.println(selectedPatientToUpdate.getLastName());
+            ViewManager.adminDashboardPage.ChangeSceneToAdminUpdatePatientScene(selectedPatientToUpdate);
             
         } else {
             warningAlert("Select A Patient", "Please Select A Patient From The Table View");
-
         }
     }
 

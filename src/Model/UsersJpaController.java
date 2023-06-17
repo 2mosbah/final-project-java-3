@@ -32,7 +32,7 @@ public class UsersJpaController implements Serializable {
 
     public void create(Users users) {
         if (users.getBokkedappointmentsList() == null) {
-            users.setBokkedappointmentsList(new ArrayList<Bokkedappointments>());
+            users.setBokkedappointmentsList(new ArrayList<>());
         }
         EntityManager em = null;
         try {

@@ -6,9 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -32,19 +30,6 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <HBox layoutX="274.0" layoutY="96.0" prefHeight="36.0" prefWidth="255.0">
-               <children>
-                  <TextField fx:id="fNameTF" prefHeight="36.0" prefWidth="187.0" promptText="First Name" styleClass="textField" />
-                  <Button fx:id="searchByFNameBtn" alignment="CENTER" mnemonicParsing="false" onAction="#searchByFNameHandle" prefHeight="36.0" prefWidth="67.0" style="-fx-background-color: #3598DB;" styleClass="showAllBtn" text="Search" textFill="WHITE">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Button>
-               </children>
-            </HBox>
             <Button fx:id="updateBtn" layoutX="13.0" layoutY="428.0" mnemonicParsing="false" onAction="#updateBtnHandle" prefHeight="45.0" prefWidth="92.0" style="-fx-background-color: #3598DB;" styleClass="updateBtn" text="Update" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -70,6 +55,14 @@
                   <TableColumn fx:id="statusTC" minWidth="9.0" prefWidth="82.0" text="Status" />
                </columns>
             </TableView>
+            <Button fx:id="showFreeAppointments" layoutX="12.0" layoutY="89.0" mnemonicParsing="false" onAction="#showFreeAppointmentsHandle" prefHeight="42.0" prefWidth="101.0" style="-fx-background-color: #3598DB;" styleClass="updateBtn" text="Show" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="dashboardNav" prefHeight="622.0" prefWidth="228.0" style="-fx-background-color: #8fb4c2;">
@@ -81,7 +74,7 @@
             </Label>
             <VBox fx:id="vBox" layoutX="10.0" layoutY="96.0" prefHeight="291.0" prefWidth="211.0" spacing="20.0">
                <children>
-                  <Button fx:id="showFreeAppointments" mnemonicParsing="false" onAction="#showFreeAppointmentsHandle" prefHeight="42.0" prefWidth="211.0" style="-fx-background-color: #3598DB;" styleClass="updateBtn" text="Show Free Apppointments" textFill="WHITE">
+                  <Button fx:id="freeAppointments" mnemonicParsing="false" onAction="#freeAppointmentsHandle" prefHeight="42.0" prefWidth="211.0" style="-fx-background-color: #3598DB;" styleClass="updateBtn" text="Free Apppointments" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -89,7 +82,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="showBookedAppointments" mnemonicParsing="false" onAction="#showBookedAppointmentsHandle" prefHeight="42.0" prefWidth="211.0" style="-fx-background-color: #3598DB;" styleClass="updateBtn" text="Show Booked Appointments" textFill="WHITE">
+                  <Button fx:id="showBookedAppointments" mnemonicParsing="false" onAction="#showBookedAppointmentsHandle" prefHeight="42.0" prefWidth="211.0" style="-fx-background-color: #3598DB;" styleClass="updateBtn" text="Bokked Appointments" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>

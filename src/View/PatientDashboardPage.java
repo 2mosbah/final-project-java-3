@@ -16,18 +16,33 @@ import javafx.stage.Stage;
  */
 public class PatientDashboardPage extends Stage {
 
-    private final Scene PatientDashboardScene;
-
+    private final Scene patientDashboardScene;
+    private final Scene patientShowBookedAppScene;
+    
     public PatientDashboardPage() throws IOException {
-        FXMLLoader loader = new FXMLLoader(
-                getClass()
-                        .getResource("PatientFXML/PatientDashboardPage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("PatientFXML/PatientDashboardPage.fxml"));
         Parent root = loader.load();
-        PatientDashboardScene = new Scene(root);
+        patientDashboardScene = new Scene(root);
 
+        FXMLLoader ShowBookedAppLoader = new FXMLLoader(getClass().getResource("PatientFXML/PatientShowBookedAppointments.fxml"));
+        Parent ShowBookedAppRoot = ShowBookedAppLoader.load();
+        patientShowBookedAppScene = new Scene(ShowBookedAppRoot);
+        
+       
         this.setTitle("Patient Dashboard Page");
-        this.setScene(PatientDashboardScene);
+        this.setScene(patientDashboardScene);
         this.show();
     }
+
+    public void ChangeSceneToShowFreeApp() {
+        this.setScene(patientDashboardScene);
+        this.setTitle("Show Free Appointments");
+    }
+
+    public void ChangeSceneToShowBookedApp() {
+        this.setScene(patientShowBookedAppScene);
+        this.setTitle("Show Booked Appointments");
+    }
+   
 
 }

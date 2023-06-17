@@ -4,7 +4,6 @@
  */
 package Controller.Admin;
 
-import static Controller.Admin.AdminPatientManagmentController.selectedPatientToUpdate;
 import Model.Users;
 import View.ViewManager;
 import java.net.URL;
@@ -68,7 +67,7 @@ public class AdminUpdatePatientController implements Initializable {
     @FXML
     private TextField txtPhone;
 
-    Users oldPatient = Controller.Admin.AdminPatientManagmentController.selectedPatientToUpdate;
+    Users oldPatient;
 
     /**
      * Initializes the controller class.
@@ -78,12 +77,7 @@ public class AdminUpdatePatientController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-
-          if(oldPatient != null){
-                Platform.runLater(() -> selectedPatient());
-          }
-        
+//        Platform.runLater(() -> );
     }
 
     public void selectedPatient() {
@@ -106,12 +100,25 @@ public class AdminUpdatePatientController implements Initializable {
 
     @FXML
     private void updatePatientBtnHandle(ActionEvent event) {
-
+                
     }
 
     @FXML
     private void cancelBtnHandle(ActionEvent event) {
         ViewManager.adminDashboardPage.ChangeSceneToPatientsScene();
+    }
+
+    public void setPatient(Users selectedPatientToUpdate) {
+        this.oldPatient = selectedPatientToUpdate;
+
+        Platform.runLater(() -> {
+            selectedPatient();
+        });
+
+    }
+
+    public Users getPatient() {
+        return this.oldPatient;
     }
 
 }

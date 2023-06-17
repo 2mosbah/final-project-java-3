@@ -70,11 +70,11 @@ public class AppointmentsJpaController implements Serializable {
             Appointments persistentAppointments = em.find(Appointments.class, appointments.getId());
             List<Bokkedappointments> bokkedappointmentsListOld = persistentAppointments.getBokkedappointmentsList();
             List<Bokkedappointments> bokkedappointmentsListNew = appointments.getBokkedappointmentsList();
-            List<Bokkedappointments> attachedBokkedappointmentsListNew = new ArrayList<Bokkedappointments>();
-            for (Bokkedappointments bokkedappointmentsListNewBokkedappointmentsToAttach : bokkedappointmentsListNew) {
-                bokkedappointmentsListNewBokkedappointmentsToAttach = em.getReference(bokkedappointmentsListNewBokkedappointmentsToAttach.getClass(), bokkedappointmentsListNewBokkedappointmentsToAttach.getId());
-                attachedBokkedappointmentsListNew.add(bokkedappointmentsListNewBokkedappointmentsToAttach);
-            }
+            List<Bokkedappointments> attachedBokkedappointmentsListNew = new ArrayList<>();
+//            for (Bokkedappointments bokkedappointmentsListNewBokkedappointmentsToAttach : bokkedappointmentsListNew) {
+//                bokkedappointmentsListNewBokkedappointmentsToAttach = em.getReference(bokkedappointmentsListNewBokkedappointmentsToAttach.getClass(), bokkedappointmentsListNewBokkedappointmentsToAttach.getId());
+//                attachedBokkedappointmentsListNew.add(bokkedappointmentsListNewBokkedappointmentsToAttach);
+//            }
             bokkedappointmentsListNew = attachedBokkedappointmentsListNew;
             appointments.setBokkedappointmentsList(bokkedappointmentsListNew);
             appointments = em.merge(appointments);

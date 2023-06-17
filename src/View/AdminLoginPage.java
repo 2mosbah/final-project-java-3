@@ -19,10 +19,8 @@ public class AdminLoginPage extends Stage {
     private Scene adminLoginScene;
 
     public AdminLoginPage() throws IOException {
-        
-        FXMLLoader loader = new FXMLLoader(
-                getClass()
-                        .getResource("AdminFXML/AdminLoginPage.fxml"));
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminFXML/AdminLoginPage.fxml"));
         Parent root = loader.load();
         adminLoginScene = new Scene(root);
 

@@ -14,12 +14,13 @@ import javafx.stage.Stage;
  */
 public class FinalProject extends Application {
 
+    public static int userId = 0;
+
     @Override
     public void start(Stage stage) throws Exception {
 
-       // ViewManager.openPatientLoginPage();
-       ViewManager.openAdminDashboardPage();
- 
+        ViewManager.openPatientLoginPage();
+
     }
 
     /**

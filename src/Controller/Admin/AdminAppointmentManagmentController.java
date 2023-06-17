@@ -4,7 +4,6 @@
  */
 package Controller.Admin;
 
-import static Controller.Admin.AdminPatientManagmentController.selectedPatientToUpdate;
 import Model.Appointments;
 import Model.AppointmentsJpaController;
 import Model.Users;
@@ -46,10 +45,6 @@ public class AdminAppointmentManagmentController implements Initializable {
     @FXML
     private Button addAppointments;
     @FXML
-    private TextField fNameTF;
-    @FXML
-    private Button searchByFNameBtn;
-    @FXML
     private Button updateBtn;
     @FXML
     private Button deleteBtn;
@@ -79,6 +74,8 @@ public class AdminAppointmentManagmentController implements Initializable {
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("finalProjectPU");
     EntityManager em = emf.createEntityManager();
     AppointmentsJpaController appsJPA = new AppointmentsJpaController(emf);
+    @FXML
+    private Button freeAppointments;
 
     /**
      * Initializes the controller class.
@@ -108,18 +105,8 @@ public class AdminAppointmentManagmentController implements Initializable {
     }
 
     @FXML
-    private void searchByFNameHandle(ActionEvent event) {
-//        Query query = em.createNamedQuery("Appointments.findByAppointmentTime");
-//        String findByFName = fNameTF.getText();
-//        query.setParameter("firstName", findByFName);
-//        List<Appointments> result = query.getResultList();
-//        tableView.getItems().addAll(result);
-    }
-
-    @FXML
     private void updateBtnHandle(ActionEvent event) {
         if (tableView.getSelectionModel().getSelectedItem() != null) {
-
 
             ViewManager.adminDashboardPage.ChangeSceneToAdminUpdateAppScene();
 
@@ -186,5 +173,9 @@ public class AdminAppointmentManagmentController implements Initializable {
         warnAlert.setTitle(title);
         warnAlert.setContentText(content);
         warnAlert.show();
+    }
+
+    @FXML
+    private void freeAppointmentsHandle(ActionEvent event) {
     }
 }

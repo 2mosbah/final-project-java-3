@@ -54,6 +54,14 @@
                   <TableColumn fx:id="tcComment" minWidth="9.0" prefWidth="82.0" text="Comment" />
                </columns>
             </TableView>
+            <Button fx:id="showBokkedAppointments" layoutX="14.0" layoutY="97.0" mnemonicParsing="false" onAction="#showBokkedAppointmentsHandle" prefHeight="36.0" prefWidth="84.0" style="-fx-background-color: #3598DB;" styleClass="updateBtn" text="Show" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="dashboardNav" prefHeight="622.0" prefWidth="228.0" style="-fx-background-color: #8fb4c2;">
@@ -65,7 +73,7 @@
             </Label>
             <VBox fx:id="vBox" layoutX="10.0" layoutY="96.0" prefHeight="291.0" prefWidth="211.0" spacing="20.0">
                <children>
-                  <Button fx:id="showFreeAppointments" mnemonicParsing="false" onAction="#showFreeAppointmentsHandle" prefHeight="42.0" prefWidth="211.0" style="-fx-background-color: #3598DB;" styleClass="updateBtn" text="Show Free Apppointments" textFill="WHITE">
+                  <Button fx:id="freeAppointments" mnemonicParsing="false" onAction="#freeAppointmentsHandle" prefHeight="42.0" prefWidth="211.0" style="-fx-background-color: #3598DB;" styleClass="updateBtn" text="Free Apppointments" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -73,7 +81,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="showBookedAppointments" mnemonicParsing="false" onAction="#showBookedAppointmentsHandle" prefHeight="42.0" prefWidth="211.0" style="-fx-background-color: #3598DB;" styleClass="updateBtn" text="Show Booked Appointments" textFill="WHITE">
+                  <Button fx:id="bookedAppointments" mnemonicParsing="false" onAction="#bookedAppointmentsHandle" prefHeight="42.0" prefWidth="211.0" style="-fx-background-color: #3598DB;" styleClass="updateBtn" text="Bokked Appointments" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
