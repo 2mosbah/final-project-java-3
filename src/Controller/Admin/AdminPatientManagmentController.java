@@ -154,16 +154,14 @@ public class AdminPatientManagmentController implements Initializable {
     @FXML
     private void updateBtnHandle(ActionEvent event) {
         if (tableView.getSelectionModel().getSelectedItem() != null) {
-            
+
             Users selectedPatientToUpdate = tableView.getSelectionModel().getSelectedItem();
-            System.out.println(selectedPatientToUpdate.getAge());
-            System.out.println(selectedPatientToUpdate.getPassword());
-            System.out.println(selectedPatientToUpdate.getLastName());
             ViewManager.adminDashboardPage.ChangeSceneToAdminUpdatePatientScene(selectedPatientToUpdate);
-            
+
         } else {
             warningAlert("Select A Patient", "Please Select A Patient From The Table View");
         }
+        tableView.getItems().clear();
     }
 
     @FXML

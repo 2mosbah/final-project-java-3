@@ -7,6 +7,7 @@ package Controller.Admin;
 import Model.Users;
 import Model.UsersJpaController;
 import View.ViewManager;
+import finalproject.FinalProject;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -94,15 +95,15 @@ public class AdminAddNewPatientController implements Initializable {
         int age = Integer.parseInt(txtAge.getText());
         String email = txtEmail.getText();
         int phone = Integer.parseInt(txtPhone.getText());
-        String gender = ((RadioButton) genderGroup.getSelectedToggle()).getText();
+        String gender = ((RadioButton) genderGroup.getSelectedToggle()).getText().toLowerCase();
         String role = "patient";
 
         Users users = new Users(username, password, fName, lName, age, email, phone, gender, role);
         usersJPA.create(users);
 
-        successAlert("Patient Inserted", "Patient Inserted Successfully☻♥");
+        FinalProject.successAlert("Patient Inserted", "Patient Inserted Successfully☻♥");
         ViewManager.adminDashboardPage.ChangeSceneToPatientsScene();
-        
+         
         ResetHandle(event); 
         
     }
@@ -110,13 +111,6 @@ public class AdminAddNewPatientController implements Initializable {
     @FXML
     private void cancelBtnHandle(ActionEvent event) {
         ViewManager.adminDashboardPage.ChangeSceneToPatientsScene();
-    }
-
-    public void successAlert(String title, String content) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setContentText(content);
-        alert.showAndWait();
     }
 
     private void ResetHandle(ActionEvent event) {

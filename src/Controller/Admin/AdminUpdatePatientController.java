@@ -5,7 +5,9 @@
 package Controller.Admin;
 
 import Model.Users;
+import Model.UsersJpaController;
 import View.ViewManager;
+import finalproject.FinalProject;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -18,6 +20,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  * FXML Controller class
@@ -69,6 +73,9 @@ public class AdminUpdatePatientController implements Initializable {
 
     Users oldPatient;
 
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("finalProjectPU");
+    UsersJpaController usersJPA = new UsersJpaController(emf);
+
     /**
      * Initializes the controller class.
      *
@@ -77,7 +84,7 @@ public class AdminUpdatePatientController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        Platform.runLater(() -> );
+
     }
 
     public void selectedPatient() {
@@ -99,8 +106,26 @@ public class AdminUpdatePatientController implements Initializable {
     }
 
     @FXML
-    private void updatePatientBtnHandle(ActionEvent event) {
-                
+    private void updatePatientBtnHandle(ActionEvent event) throws Exception {
+
+        String username = txtUsername.getText().trim();
+        String password = txtPassword.getText().trim();
+        String fname = txtFirstName.getText().trim();
+        String lname = txtLastName.getText().trim();
+        int age = Integer.parseInt(txtAge.getText().trim());
+        String email = txtEmail.getText().trim();
+        int phone = Integer.parseInt(txtPhone.getText().trim());
+        String gender = ((RadioButton) genderGroup.getSelectedToggle()).getText();
+        String role = "patient";
+        Users user = new Users(username, password, fname, lname, age, email, phone, gender, role);
+        System.out.println(oldPatient.getId());
+        user.setId(oldPatient.getId());
+        usersJPA.edit(user);
+
+        FinalProject.successAlert("Update Patient", "Patient Updated Successfully☻♥");
+
+        ViewManager.adminDashboardPage.ChangeSceneToPatientsScene();
+
     }
 
     @FXML
@@ -110,11 +135,10 @@ public class AdminUpdatePatientController implements Initializable {
 
     public void setPatient(Users selectedPatientToUpdate) {
         this.oldPatient = selectedPatientToUpdate;
-
+        
         Platform.runLater(() -> {
             selectedPatient();
         });
-
     }
 
     public Users getPatient() {

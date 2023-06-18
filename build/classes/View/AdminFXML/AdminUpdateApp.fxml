@@ -2,10 +2,10 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="592.0" prefWidth="771.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Admin.AdminUpdateAppController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="592.0" prefWidth="771.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane id="AnchorPane" layoutX="112.0" layoutY="24.0" prefHeight="480.0" prefWidth="584.0" style="-fx-background-color: white; -fx-background-radius: 50pt;">
          <children>
@@ -66,7 +66,6 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="txtAppTime" prefHeight="32.0" prefWidth="159.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label fx:id="statusLabel" prefHeight="47.0" prefWidth="213.0" style="-fx-background-radius: 10px;" text="Status:" GridPane.rowIndex="2">
                      <font>
                         <Font name="Georgia Bold" size="17.0" />
@@ -85,15 +84,31 @@
                               <ToggleGroup fx:id="statusGroup" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton fx:id="bookedRadio" mnemonicParsing="false" text="Booked" toggleGroup="$statusGroup">
+                        <RadioButton fx:id="bookedRadio" mnemonicParsing="false" text="Bokked" toggleGroup="$statusGroup">
                            <font>
                               <Font name="Georgia Bold" size="15.0" />
                            </font>
                         </RadioButton>
                      </children>
                   </HBox>
+                  <HBox prefHeight="41.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <ComboBox fx:id="timeCombo" onAction="#timeComboHandle" onMouseDragged="#timeComboData" prefHeight="42.0" prefWidth="102.0" />
+                        <Label alignment="CENTER" prefHeight="33.0" prefWidth="66.0" text="pm">
+                           <font>
+                              <Font name="Georgia Bold" size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
                </children>
             </GridPane>
+            <Label layoutX="208.0" layoutY="219.0" text="User Id">
+               <font>
+                  <Font name="Georgia Bold" size="17.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="userIdCombo" layoutX="287.0" layoutY="211.0" onAction="#userIdComboHandle" onMouseClicked="#userIdComboData" prefHeight="35.0" prefWidth="86.0" />
          </children>
       </AnchorPane>
    </children>

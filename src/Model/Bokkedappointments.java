@@ -64,6 +64,13 @@ public class Bokkedappointments implements Serializable {
         this.userId = userId;
     }
 
+    public Bokkedappointments(String status, String doctorComment, Appointments appointmentId, Users userId) {
+        this.status = status;
+        this.doctorComment = doctorComment;
+        this.appointmentId = appointmentId;
+        this.userId = userId;
+    }
+
     public Integer getId() {
         return id;
     }

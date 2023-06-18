@@ -6,8 +6,14 @@ package Controller.Admin;
 
 import Model.Appointments;
 import Model.AppointmentsJpaController;
+import Model.Bokkedappointments;
+import Model.BokkedappointmentsJpaController;
+import Model.Users;
 import View.ViewManager;
+import finalproject.FinalProject;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,10 +24,12 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.MouseEvent;
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  * FXML Controller class
@@ -40,7 +48,6 @@ public class AdminAddAppPageController implements Initializable {
     private DatePicker txtDate;
     @FXML
     private Label appTimeLabel;
-    private TextField txtAppTime;
     @FXML
     private Label statusLabel;
     @FXML
@@ -51,11 +58,13 @@ public class AdminAddAppPageController implements Initializable {
     private RadioButton bokkedRadio;
     @FXML
     private ComboBox<Integer> timeCombo;
-    
-    
-    
+    @FXML
+    private ComboBox<Integer> userIdCombo;
+
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("finalProjectPU");
+    EntityManager em = emf.createEntityManager();
     AppointmentsJpaController appsJPA = new AppointmentsJpaController(emf);
+    BokkedappointmentsJpaController bookAppJPA = new BokkedappointmentsJpaController(emf);
 
     /**
      * Initializes the controller class.
@@ -67,20 +76,32 @@ public class AdminAddAppPageController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-    
-    @FXML
-    private void signUpHandle(ActionEvent event) {
 
+    @FXML
+
+    private void signUpHandle(ActionEvent event) {
+        LocalDate currentDate = LocalDate.now();
         String appDate = txtDate.getValue().toString();
-        String appTime = txtAppTime.getText();
+        String appTime = timeCombo.getValue().toString() + " pm";
         String appDay = txtDate.getValue().getDayOfWeek().toString();
         String status = ((RadioButton) statusGroup.getSelectedToggle()).getText().toLowerCase();
+        if (txtDate.getValue().isBefore(currentDate)) {
 
-        Appointments appointments = new Appointments(appDate, appDay, appTime, status);
-        appsJPA.create(appointments);
+            warningAlert("Invalid Date", "Please select today's date or a future date.");
 
-        successAlert("Add Appointment", "Appointment Added Successfully☻♥");
-        ViewManager.adminDashboardPage.ChangeSceneToAppointmentsScene();
+        } else {
+            Appointments appointments = new Appointments(appDate, appDay, appTime, status);
+            appsJPA.create(appointments);
+
+            FinalProject.successAlert("Add Appointment", "Appointment Added Successfully☻♥");
+            if (bokkedRadio.isSelected()) {
+                Users user = new Users(Integer.valueOf(userIdCombo.getValue().toString()));
+                Bokkedappointments bookedApp = new Bokkedappointments("waiting", appointments, user);
+                bookAppJPA.create(bookedApp);
+            }
+
+            ViewManager.adminDashboardPage.ChangeSceneToAppointmentsScene();
+        }
     }
 
     @FXML
@@ -88,15 +109,34 @@ public class AdminAddAppPageController implements Initializable {
         ViewManager.adminDashboardPage.ChangeSceneToAppointmentsScene();
     }
 
-    public void successAlert(String title, String content) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setContentText(content);
-        alert.showAndWait();
-    }
-
     @FXML
     private void timeComboHandle(ActionEvent event) {
     }
 
+    @FXML
+    private void comboTimeData(MouseEvent event) {
+        timeCombo.getItems().addAll(12, 1, 2, 3, 4, 5, 6, 7, 8);
+    }
+
+    @FXML
+    private void userIdComboData(MouseEvent event) {
+        Query query = em.createNamedQuery("Users.findByRole");
+        query.setParameter("role", "patient");
+        List<Users> result = query.getResultList();
+        for (Users s : result) {
+            userIdCombo.getItems().add(s.getId());
+        }
+    }
+
+    @FXML
+    private void userIdComboHandle(ActionEvent event) {
+
+    }
+
+    public void warningAlert(String title, String content) {
+        Alert warnAlert = new Alert(Alert.AlertType.WARNING);
+        warnAlert.setTitle(title);
+        warnAlert.setContentText(content);
+        warnAlert.show();
+    }
 }

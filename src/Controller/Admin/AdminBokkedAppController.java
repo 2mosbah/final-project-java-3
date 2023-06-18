@@ -122,7 +122,8 @@ public class AdminBokkedAppController implements Initializable {
     @FXML
     private void giveCommentHandle(ActionEvent event) {
         if (tableView.getSelectionModel().getSelectedItem() != null) {
-               
+               Bokkedappointments  selectedAppToComment = tableView.getSelectionModel().getSelectedItem();
+               ViewManager.adminDashboardPage.ChangeSceneToAdminGiveCommentScene(selectedAppToComment);
         } else {
             warningAlert("Select An Appointment", "Please Select An Appointment From The Table View");
         }
@@ -147,6 +148,8 @@ public class AdminBokkedAppController implements Initializable {
     private void bookedAppointmentsHandle(ActionEvent event) {
     }
 
+    
+    
     public void successAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
@@ -160,4 +163,5 @@ public class AdminBokkedAppController implements Initializable {
         warnAlert.setContentText(content);
         warnAlert.show();
     }
+    
 }

@@ -107,20 +107,26 @@ public class PatientRegPageController implements Initializable {
         String gender = ((RadioButton) genderGroup.getSelectedToggle()).getText();
         String role = ((RadioButton) roleGroup.getSelectedToggle()).getText();
 
-        Users users = new Users(username, password, fName, lName, age, email, phone, gender, role);
-        usersJPA.create(users);
-
-        if (patientRole.isSelected()) {
-            successAlert("Patient Inserted", "Patient Inserted Successfully☻♥");
-            ViewManager.closePatientRegPage();
-            ViewManager.openPatientLoginPage();
-
+        if (!isValidFirstName(fName)) {
+            warningAlert("Wrong First Name", "Name must contain characters");
+        } else if (!isValidEmail(email)) {
+            warningAlert("Wrong Email", "Email must be correct");
+        } else if (!isValidPassword(password)) {
+            warningAlert("Wrong Password", "Password must be 8 characters or more");
         } else {
-            successAlert("Admin Inserted", "Admin Inserted Successfully☻♥");
-            ViewManager.closePatientRegPage();
-            ViewManager.openAdminLoginPage();
+            Users users = new Users(username, password, fName, lName, age, email, phone, gender, role);
+            usersJPA.create(users);
 
-        }
+            if (patientRole.isSelected()) {
+                successAlert("Patient Inserted", "Patient Inserted Successfully☻♥");
+                ViewManager.closePatientRegPage();
+                ViewManager.openPatientLoginPage();
+            } else {
+                successAlert("Admin Inserted", "Admin Inserted Successfully☻♥");
+                ViewManager.closePatientRegPage();
+                ViewManager.openAdminLoginPage();
+            }
+    }
 
     }
 
@@ -147,4 +153,24 @@ public class PatientRegPageController implements Initializable {
         alert.setContentText(content);
         alert.showAndWait();
     }
+
+    public void warningAlert(String title, String content) {
+        Alert warnAlert = new Alert(Alert.AlertType.WARNING);
+        warnAlert.setTitle(title);
+        warnAlert.setContentText(content);
+        warnAlert.show();
+    }
+
+    private boolean isValidFirstName(String fName) {
+        return fName.matches(".*[a-zA-Z\\s].*");
+    }
+
+    private boolean isValidEmail(String email) {
+        return email.matches("^(.+)@(.+)$");
+    }
+
+    private boolean isValidPassword(String password) {
+        return password.length() >= 8;
+    }
+
 }

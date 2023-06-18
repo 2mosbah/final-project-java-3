@@ -15,6 +15,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -91,7 +92,6 @@ public class AdminAppointmentManagmentController implements Initializable {
         appDayTC.setCellValueFactory(new PropertyValueFactory("appointmentDay"));
         appTimeTC.setCellValueFactory(new PropertyValueFactory("appointmentTime"));
         statusTC.setCellValueFactory(new PropertyValueFactory("status"));
-
     }
 
     @FXML
@@ -102,13 +102,16 @@ public class AdminAppointmentManagmentController implements Initializable {
     @FXML
     private void addAppointmentsHandle(ActionEvent event) {
         ViewManager.adminDashboardPage.ChangeSceneToAdminAddAppScene();
+
+        showFreeAppointmentsHandle();
     }
 
     @FXML
     private void updateBtnHandle(ActionEvent event) {
         if (tableView.getSelectionModel().getSelectedItem() != null) {
 
-            ViewManager.adminDashboardPage.ChangeSceneToAdminUpdateAppScene();
+            Appointments selectedApptoUpdate = tableView.getSelectionModel().getSelectedItem();
+            ViewManager.adminDashboardPage.ChangeSceneToAdminUpdateAppScene(selectedApptoUpdate);
 
         } else {
             warningAlert("Select An Appointment", "Please Select An Appointment From The Table View");
@@ -144,11 +147,11 @@ public class AdminAppointmentManagmentController implements Initializable {
         } else {
             warningAlert("Select An Appointment", "Please Select An Appointment From The Table View");
         }
-        showFreeAppointmentsHandle(event);
+        showFreeAppointmentsHandle();
     }
 
     @FXML
-    private void showFreeAppointmentsHandle(ActionEvent event) {
+    private void showFreeAppointmentsHandle() {
         tableView.getItems().clear();
         Query query = em.createNamedQuery("Appointments.findByStatus");
         query.setParameter("status", "free");

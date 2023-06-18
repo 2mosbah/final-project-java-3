@@ -1,6 +1,10 @@
 package View;
 
+import Controller.Admin.AdminGiveCommentController;
+import Controller.Admin.AdminUpdateAppController;
 import Controller.Admin.AdminUpdatePatientController;
+import Model.Appointments;
+import Model.Bokkedappointments;
 import Model.Users;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
@@ -26,7 +30,10 @@ public class AdminDashboardPage extends Stage {
     private final Scene adminAddAppScene;
     private final Scene adminUpdateAppScene;
     private final Scene adminBokkedAppScene;
+    private final Scene adminGiveCommentScene;
     AdminUpdatePatientController controller;
+    AdminUpdateAppController appController;
+    AdminGiveCommentController commentController;
 
     public AdminDashboardPage() throws IOException {
 
@@ -57,12 +64,20 @@ public class AdminDashboardPage extends Stage {
         adminAddAppScene = new Scene(adminAddAppRoot);
 
         FXMLLoader adminUpdateAppLoader = new FXMLLoader(getClass().getResource("AdminFXML/AdminUpdateApp.fxml"));
+        appController = new AdminUpdateAppController();
+        adminUpdateAppLoader.setController(appController);
         Parent adminUpdateAppRoot = adminUpdateAppLoader.load();
         adminUpdateAppScene = new Scene(adminUpdateAppRoot);
 
         FXMLLoader adminBokkedAppLoader = new FXMLLoader(getClass().getResource("AdminFXML/AdminBokkedApp.fxml"));
         Parent adminBokkedAppRoot = adminBokkedAppLoader.load();
         adminBokkedAppScene = new Scene(adminBokkedAppRoot);
+
+        FXMLLoader adminGiveCommentLoader = new FXMLLoader(getClass().getResource("AdminFXML/AdminGiveComment.fxml"));
+        commentController = new AdminGiveCommentController();
+        adminGiveCommentLoader.setController(commentController);
+        Parent adminGiveCommentRoot = adminGiveCommentLoader.load();
+        adminGiveCommentScene = new Scene(adminGiveCommentRoot);
 
         this.setScene(adminDashboardScene);
         this.setTitle("Admin Dashboard Page");
@@ -89,11 +104,19 @@ public class AdminDashboardPage extends Stage {
     }
 
     public void ChangeSceneToAdminUpdatePatientScene(Users selectedPatientToUpdate) {
-        System.out.println("CC "+controller);
-        System.out.println("Selected"  + selectedPatientToUpdate);
+        System.out.println("CC " + controller);
+        System.out.println("Selected" + selectedPatientToUpdate);
         controller.setPatient(selectedPatientToUpdate);
         this.setScene(adminUpdatePatientScene);
         this.setTitle("Update Patient");
+    }
+
+    public void ChangeSceneToAdminGiveCommentScene(Bokkedappointments selectedAppToComment) {
+        System.out.println("Commet C " + commentController);
+        System.out.println("Selected comment" + selectedAppToComment);
+        commentController.setComment(selectedAppToComment);
+        this.setScene(adminGiveCommentScene);
+        this.setTitle("Give Comment");
     }
 
     public void ChangeSceneToAdminAddAppScene() {
@@ -101,7 +124,10 @@ public class AdminDashboardPage extends Stage {
         this.setTitle("Add New Appointment");
     }
 
-    public void ChangeSceneToAdminUpdateAppScene() {
+    public void ChangeSceneToAdminUpdateAppScene(Appointments selectedApptoUpdate) {
+        System.out.println("App Cont " + appController);
+        System.out.println("Selected App " + selectedApptoUpdate);
+        appController.setApp(selectedApptoUpdate);
         this.setScene(adminUpdateAppScene);
         this.setTitle("Update Appointment");
     }

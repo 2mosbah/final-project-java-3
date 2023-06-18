@@ -84,7 +84,7 @@
                               <ToggleGroup fx:id="statusGroup" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton fx:id="bokkedRadio" mnemonicParsing="false" text="Booked" toggleGroup="$statusGroup">
+                        <RadioButton fx:id="bokkedRadio" mnemonicParsing="false" text="Bokked" toggleGroup="$statusGroup">
                            <font>
                               <Font name="Georgia Bold" size="15.0" />
                            </font>
@@ -93,7 +93,7 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <ComboBox fx:id="timeCombo" onAction="#timeComboHandle" prefHeight="42.0" prefWidth="102.0" />
+                        <ComboBox fx:id="timeCombo" onAction="#timeComboHandle" onMouseClicked="#comboTimeData" prefHeight="42.0" prefWidth="102.0" />
                         <Label alignment="CENTER" prefHeight="33.0" prefWidth="66.0" text="pm">
                            <font>
                               <Font name="Georgia Bold" size="17.0" />
@@ -103,6 +103,12 @@
                   </HBox>
                </children>
             </GridPane>
+            <Label layoutX="207.0" layoutY="221.0" text="User Id">
+               <font>
+                  <Font name="Georgia Bold" size="17.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="userIdCombo" layoutX="286.0" layoutY="213.0" onAction="#userIdComboHandle" onMouseClicked="#userIdComboData" prefHeight="35.0" prefWidth="86.0" />
          </children>
       </AnchorPane>
    </children>
