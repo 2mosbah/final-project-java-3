@@ -71,13 +71,7 @@ public class PatientRegPageController implements Initializable {
     private Label genderLabel;
     @FXML
     private ToggleGroup genderGroup;
-    @FXML
-    private Label roleLabel;
-    @FXML
-    private RadioButton adminRole;
-    @FXML
     private ToggleGroup roleGroup;
-    @FXML
     private RadioButton patientRole;
 
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("finalProjectPU");
@@ -105,7 +99,7 @@ public class PatientRegPageController implements Initializable {
         String email = txtEmail.getText();
         int phone = Integer.parseInt(txtPhone.getText());
         String gender = ((RadioButton) genderGroup.getSelectedToggle()).getText();
-        String role = ((RadioButton) roleGroup.getSelectedToggle()).getText();
+        String role = "patient";
 
         if (!isValidFirstName(fName)) {
             warningAlert("Wrong First Name", "Name must contain characters");
@@ -117,16 +111,12 @@ public class PatientRegPageController implements Initializable {
             Users users = new Users(username, password, fName, lName, age, email, phone, gender, role);
             usersJPA.create(users);
 
-            if (patientRole.isSelected()) {
+          
                 successAlert("Patient Inserted", "Patient Inserted Successfully☻♥");
                 ViewManager.closePatientRegPage();
                 ViewManager.openPatientLoginPage();
-            } else {
-                successAlert("Admin Inserted", "Admin Inserted Successfully☻♥");
-                ViewManager.closePatientRegPage();
-                ViewManager.openAdminLoginPage();
-            }
-    }
+          
+        }
 
     }
 

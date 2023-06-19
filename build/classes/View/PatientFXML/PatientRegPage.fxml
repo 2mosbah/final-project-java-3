@@ -25,11 +25,11 @@
       </AnchorPane>
       <TextField fx:id="txtUsername" layoutX="160.0" layoutY="126.0" prefHeight="34.0" prefWidth="202.0" promptText="username" />
       <TextField fx:id="txtFirstName" layoutX="160.0" layoutY="206.0" prefHeight="34.0" prefWidth="202.0" promptText="first Name" />
-      <Button fx:id="signUpBtn" layoutX="148.0" layoutY="532.0" mnemonicParsing="false" onAction="#signUpHandle" prefHeight="41.0" prefWidth="117.0" style="-fx-background-color: #0082c8;" text="Register" textFill="WHITE">
+      <Button fx:id="signUpBtn" layoutX="160.0" layoutY="472.0" mnemonicParsing="false" onAction="#signUpHandle" prefHeight="41.0" prefWidth="93.0" style="-fx-background-color: #0082c8;" text="Register" textFill="WHITE">
          <font>
             <Font name="Georgia Bold" size="12.0" />
          </font></Button>
-      <Button fx:id="Reset" layoutX="279.0" layoutY="532.0" mnemonicParsing="false" onAction="#ResetHandle" prefHeight="41.0" prefWidth="117.0" style="-fx-background-color: #37474f;" text="Reset" textFill="WHITE">
+      <Button fx:id="Reset" layoutX="271.0" layoutY="472.0" mnemonicParsing="false" onAction="#ResetHandle" prefHeight="41.0" prefWidth="93.0" style="-fx-background-color: #37474f;" text="Reset" textFill="WHITE">
          <font>
             <Font name="Georgia Bold" size="12.0" />
          </font></Button>
@@ -125,26 +125,5 @@
       <TextField fx:id="txtAge" layoutX="160.0" layoutY="292.0" prefHeight="34.0" prefWidth="202.0" promptText="age" />
       <TextField fx:id="txtEmail" layoutX="160.0" layoutY="336.0" prefHeight="34.0" prefWidth="202.0" promptText="email" />
       <TextField fx:id="txtPhone" layoutX="160.0" layoutY="382.0" prefHeight="34.0" prefWidth="202.0" promptText="phone" />
-      <Label fx:id="roleLabel" layoutX="27.0" layoutY="471.0" prefHeight="34.0" prefWidth="107.0" style="-fx-background-radius: 10px;" text="Role:">
-         <font>
-            <Font name="Georgia Bold" size="17.0" />
-         </font>
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
-      </Label>
-      <RadioButton fx:id="adminRole" layoutX="160.0" layoutY="471.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="93.0" text="Admin">
-         <font>
-            <Font name="Georgia Bold" size="13.0" />
-         </font>
-         <toggleGroup>
-            <ToggleGroup fx:id="roleGroup" />
-         </toggleGroup>
-      </RadioButton>
-      <RadioButton fx:id="patientRole" layoutX="261.0" layoutY="471.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="93.0" text="Patient" toggleGroup="$roleGroup">
-         <font>
-            <Font name="Georgia Bold" size="13.0" />
-         </font>
-      </RadioButton>
    </children>
 </AnchorPane>

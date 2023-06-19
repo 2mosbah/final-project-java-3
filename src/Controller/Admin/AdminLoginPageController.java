@@ -49,8 +49,6 @@ public class AdminLoginPageController implements Initializable {
     @FXML
     private ImageView nursepng;
     @FXML
-    private Button registerBtn;
-    @FXML
     private Button CloseBtn;
 
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("finalProjectPU");
@@ -103,11 +101,6 @@ public class AdminLoginPageController implements Initializable {
         reset();
     }
 
-    @FXML
-    private void registerBtnHandle(ActionEvent event) throws IOException {
-        ViewManager.closeAdminLoginPage();
-        ViewManager.openPatientRegPage();
-    }
 
     @FXML
     private void CloseBtnHandle(ActionEvent event) throws IOException {

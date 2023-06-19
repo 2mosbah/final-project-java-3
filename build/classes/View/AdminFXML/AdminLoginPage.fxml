@@ -35,12 +35,7 @@
                   <Image url="@../../Images/lock.png" />
                </image>
             </ImageView>
-            <Button fx:id="registerBtn" layoutX="486.0" layoutY="202.0" mnemonicParsing="false" onAction="#registerBtnHandle" prefHeight="35.0" prefWidth="71.0" style="-fx-background-color: #0082c8;" text="Register" textFill="WHITE">
-               <font>
-                  <Font name="Georgia Bold" size="12.0" />
-               </font>
-            </Button>
-            <Button fx:id="CloseBtn" alignment="CENTER" layoutX="577.0" layoutY="202.0" mnemonicParsing="false" onAction="#CloseBtnHandle" prefHeight="35.0" prefWidth="71.0" style="-fx-background-color: #e73333;" text="Close" textFill="WHITE">
+            <Button fx:id="CloseBtn" alignment="CENTER" layoutX="477.0" layoutY="202.0" mnemonicParsing="false" onAction="#CloseBtnHandle" prefHeight="35.0" prefWidth="71.0" style="-fx-background-color: #e73333;" text="Close" textFill="WHITE">
                <font>
                   <Font name="Georgia Bold" size="12.0" />
                </font>
